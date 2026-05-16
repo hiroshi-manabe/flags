@@ -11,17 +11,6 @@
     "flag": "assets/flags/4x3/af.svg"
   },
   {
-    "code": "ax",
-    "alpha2": "AX",
-    "name": "Aland",
-    "nameJa": "オーランド諸島",
-    "nativeName": "Åland",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Mariehamn",
-    "flag": "assets/flags/4x3/ax.svg"
-  },
-  {
     "code": "al",
     "alpha2": "AL",
     "name": "Albania",
@@ -44,17 +33,6 @@
     "flag": "assets/flags/4x3/dz.svg"
   },
   {
-    "code": "as",
-    "alpha2": "AS",
-    "name": "American Samoa",
-    "nameJa": "米領サモア",
-    "nativeName": "American Samoa",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Pago Pago",
-    "flag": "assets/flags/4x3/as.svg"
-  },
-  {
     "code": "ad",
     "alpha2": "AD",
     "name": "Andorra",
@@ -75,28 +53,6 @@
     "continentName": "Africa",
     "capital": "Luanda",
     "flag": "assets/flags/4x3/ao.svg"
-  },
-  {
-    "code": "ai",
-    "alpha2": "AI",
-    "name": "Anguilla",
-    "nameJa": "アンギラ",
-    "nativeName": "Anguilla",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "The Valley",
-    "flag": "assets/flags/4x3/ai.svg"
-  },
-  {
-    "code": "aq",
-    "alpha2": "AQ",
-    "name": "Antarctica",
-    "nameJa": "南極",
-    "nativeName": "Antarctica",
-    "continent": "AN",
-    "continentName": "Antarctica",
-    "capital": "",
-    "flag": "assets/flags/4x3/aq.svg"
   },
   {
     "code": "ag",
@@ -130,17 +86,6 @@
     "continentName": "Asia",
     "capital": "Yerevan",
     "flag": "assets/flags/4x3/am.svg"
-  },
-  {
-    "code": "aw",
-    "alpha2": "AW",
-    "name": "Aruba",
-    "nameJa": "アルバ",
-    "nativeName": "Aruba",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Oranjestad",
-    "flag": "assets/flags/4x3/aw.svg"
   },
   {
     "code": "au",
@@ -264,17 +209,6 @@
     "flag": "assets/flags/4x3/bj.svg"
   },
   {
-    "code": "bm",
-    "alpha2": "BM",
-    "name": "Bermuda",
-    "nameJa": "バミューダ",
-    "nativeName": "Bermuda",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Hamilton",
-    "flag": "assets/flags/4x3/bm.svg"
-  },
-  {
     "code": "bt",
     "alpha2": "BT",
     "name": "Bhutan",
@@ -295,17 +229,6 @@
     "continentName": "South America",
     "capital": "Sucre",
     "flag": "assets/flags/4x3/bo.svg"
-  },
-  {
-    "code": "bq",
-    "alpha2": "BQ",
-    "name": "Bonaire",
-    "nameJa": "オランダ領カリブ",
-    "nativeName": "Bonaire",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Kralendijk",
-    "flag": "assets/flags/4x3/bq.svg"
   },
   {
     "code": "ba",
@@ -330,17 +253,6 @@
     "flag": "assets/flags/4x3/bw.svg"
   },
   {
-    "code": "bv",
-    "alpha2": "BV",
-    "name": "Bouvet Island",
-    "nameJa": "ブーベ島",
-    "nativeName": "Bouvetøya",
-    "continent": "AN",
-    "continentName": "Antarctica",
-    "capital": "",
-    "flag": "assets/flags/4x3/bv.svg"
-  },
-  {
     "code": "br",
     "alpha2": "BR",
     "name": "Brazil",
@@ -350,28 +262,6 @@
     "continentName": "South America",
     "capital": "Brasília",
     "flag": "assets/flags/4x3/br.svg"
-  },
-  {
-    "code": "io",
-    "alpha2": "IO",
-    "name": "British Indian Ocean Territory",
-    "nameJa": "英領インド洋地域",
-    "nativeName": "British Indian Ocean Territory",
-    "continent": "AS",
-    "continentName": "Asia",
-    "capital": "Diego Garcia",
-    "flag": "assets/flags/4x3/io.svg"
-  },
-  {
-    "code": "vg",
-    "alpha2": "VG",
-    "name": "British Virgin Islands",
-    "nameJa": "英領ヴァージン諸島",
-    "nativeName": "British Virgin Islands",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Road Town",
-    "flag": "assets/flags/4x3/vg.svg"
   },
   {
     "code": "bn",
@@ -462,17 +352,6 @@
     "flag": "assets/flags/4x3/cv.svg"
   },
   {
-    "code": "ky",
-    "alpha2": "KY",
-    "name": "Cayman Islands",
-    "nameJa": "ケイマン諸島",
-    "nativeName": "Cayman Islands",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "George Town",
-    "flag": "assets/flags/4x3/ky.svg"
-  },
-  {
     "code": "cf",
     "alpha2": "CF",
     "name": "Central African Republic",
@@ -515,28 +394,6 @@
     "continentName": "Asia",
     "capital": "Beijing",
     "flag": "assets/flags/4x3/cn.svg"
-  },
-  {
-    "code": "cx",
-    "alpha2": "CX",
-    "name": "Christmas Island",
-    "nameJa": "クリスマス島",
-    "nativeName": "Christmas Island",
-    "continent": "AS",
-    "continentName": "Asia",
-    "capital": "Flying Fish Cove",
-    "flag": "assets/flags/4x3/cx.svg"
-  },
-  {
-    "code": "cc",
-    "alpha2": "CC",
-    "name": "Cocos (Keeling) Islands",
-    "nameJa": "ココス(キーリング)諸島",
-    "nativeName": "Cocos (Keeling) Islands",
-    "continent": "AS",
-    "continentName": "Asia",
-    "capital": "West Island",
-    "flag": "assets/flags/4x3/cc.svg"
   },
   {
     "code": "co",
@@ -603,17 +460,6 @@
     "continentName": "North America",
     "capital": "Havana",
     "flag": "assets/flags/4x3/cu.svg"
-  },
-  {
-    "code": "cw",
-    "alpha2": "CW",
-    "name": "Curacao",
-    "nameJa": "キュラソー",
-    "nativeName": "Curaçao",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Willemstad",
-    "flag": "assets/flags/4x3/cw.svg"
   },
   {
     "code": "cy",
@@ -792,28 +638,6 @@
     "flag": "assets/flags/4x3/et.svg"
   },
   {
-    "code": "fk",
-    "alpha2": "FK",
-    "name": "Falkland Islands",
-    "nameJa": "フォークランド諸島",
-    "nativeName": "Falkland Islands",
-    "continent": "SA",
-    "continentName": "South America",
-    "capital": "Stanley",
-    "flag": "assets/flags/4x3/fk.svg"
-  },
-  {
-    "code": "fo",
-    "alpha2": "FO",
-    "name": "Faroe Islands",
-    "nameJa": "フェロー諸島",
-    "nativeName": "Føroyar",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Tórshavn",
-    "flag": "assets/flags/4x3/fo.svg"
-  },
-  {
     "code": "fj",
     "alpha2": "FJ",
     "name": "Fiji",
@@ -845,39 +669,6 @@
     "continentName": "Europe",
     "capital": "Paris",
     "flag": "assets/flags/4x3/fr.svg"
-  },
-  {
-    "code": "gf",
-    "alpha2": "GF",
-    "name": "French Guiana",
-    "nameJa": "仏領ギアナ",
-    "nativeName": "Guyane française",
-    "continent": "SA",
-    "continentName": "South America",
-    "capital": "Cayenne",
-    "flag": "assets/flags/4x3/gf.svg"
-  },
-  {
-    "code": "pf",
-    "alpha2": "PF",
-    "name": "French Polynesia",
-    "nameJa": "仏領ポリネシア",
-    "nativeName": "Polynésie française",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Papeetē",
-    "flag": "assets/flags/4x3/pf.svg"
-  },
-  {
-    "code": "tf",
-    "alpha2": "TF",
-    "name": "French Southern Territories",
-    "nameJa": "仏領極南諸島",
-    "nativeName": "Territoire des Terres australes et antarctiques fr",
-    "continent": "AN",
-    "continentName": "Antarctica",
-    "capital": "Port-aux-Français",
-    "flag": "assets/flags/4x3/tf.svg"
   },
   {
     "code": "ga",
@@ -935,17 +726,6 @@
     "flag": "assets/flags/4x3/gh.svg"
   },
   {
-    "code": "gi",
-    "alpha2": "GI",
-    "name": "Gibraltar",
-    "nameJa": "ジブラルタル",
-    "nativeName": "Gibraltar",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Gibraltar",
-    "flag": "assets/flags/4x3/gi.svg"
-  },
-  {
     "code": "gr",
     "alpha2": "GR",
     "name": "Greece",
@@ -955,17 +735,6 @@
     "continentName": "Europe",
     "capital": "Athens",
     "flag": "assets/flags/4x3/gr.svg"
-  },
-  {
-    "code": "gl",
-    "alpha2": "GL",
-    "name": "Greenland",
-    "nameJa": "グリーンランド",
-    "nativeName": "Kalaallit Nunaat",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Nuuk",
-    "flag": "assets/flags/4x3/gl.svg"
   },
   {
     "code": "gd",
@@ -979,28 +748,6 @@
     "flag": "assets/flags/4x3/gd.svg"
   },
   {
-    "code": "gp",
-    "alpha2": "GP",
-    "name": "Guadeloupe",
-    "nameJa": "グアドループ",
-    "nativeName": "Guadeloupe",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Basse-Terre",
-    "flag": "assets/flags/4x3/gp.svg"
-  },
-  {
-    "code": "gu",
-    "alpha2": "GU",
-    "name": "Guam",
-    "nameJa": "グアム",
-    "nativeName": "Guam",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Hagåtña",
-    "flag": "assets/flags/4x3/gu.svg"
-  },
-  {
     "code": "gt",
     "alpha2": "GT",
     "name": "Guatemala",
@@ -1010,17 +757,6 @@
     "continentName": "North America",
     "capital": "Guatemala City",
     "flag": "assets/flags/4x3/gt.svg"
-  },
-  {
-    "code": "gg",
-    "alpha2": "GG",
-    "name": "Guernsey",
-    "nameJa": "ガーンジー",
-    "nativeName": "Guernsey",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "St. Peter Port",
-    "flag": "assets/flags/4x3/gg.svg"
   },
   {
     "code": "gn",
@@ -1067,17 +803,6 @@
     "flag": "assets/flags/4x3/ht.svg"
   },
   {
-    "code": "hm",
-    "alpha2": "HM",
-    "name": "Heard Island and McDonald Islands",
-    "nameJa": "ハード島・マクドナルド諸島",
-    "nativeName": "Heard Island and McDonald Islands",
-    "continent": "AN",
-    "continentName": "Antarctica",
-    "capital": "",
-    "flag": "assets/flags/4x3/hm.svg"
-  },
-  {
     "code": "hn",
     "alpha2": "HN",
     "name": "Honduras",
@@ -1087,17 +812,6 @@
     "continentName": "North America",
     "capital": "Tegucigalpa",
     "flag": "assets/flags/4x3/hn.svg"
-  },
-  {
-    "code": "hk",
-    "alpha2": "HK",
-    "name": "Hong Kong",
-    "nameJa": "中華人民共和国香港特別行政区",
-    "nativeName": "香港",
-    "continent": "AS",
-    "continentName": "Asia",
-    "capital": "City of Victoria",
-    "flag": "assets/flags/4x3/hk.svg"
   },
   {
     "code": "hu",
@@ -1177,17 +891,6 @@
     "flag": "assets/flags/4x3/ie.svg"
   },
   {
-    "code": "im",
-    "alpha2": "IM",
-    "name": "Isle of Man",
-    "nameJa": "マン島",
-    "nativeName": "Isle of Man",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Douglas",
-    "flag": "assets/flags/4x3/im.svg"
-  },
-  {
     "code": "il",
     "alpha2": "IL",
     "name": "Israel",
@@ -1241,17 +944,6 @@
     "continentName": "Asia",
     "capital": "Tokyo",
     "flag": "assets/flags/4x3/jp.svg"
-  },
-  {
-    "code": "je",
-    "alpha2": "JE",
-    "name": "Jersey",
-    "nameJa": "ジャージー",
-    "nativeName": "Jersey",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Saint Helier",
-    "flag": "assets/flags/4x3/je.svg"
   },
   {
     "code": "jo",
@@ -1430,17 +1122,6 @@
     "flag": "assets/flags/4x3/lu.svg"
   },
   {
-    "code": "mo",
-    "alpha2": "MO",
-    "name": "Macao",
-    "nameJa": "中華人民共和国マカオ特別行政区",
-    "nativeName": "澳門",
-    "continent": "AS",
-    "continentName": "Asia",
-    "capital": "",
-    "flag": "assets/flags/4x3/mo.svg"
-  },
-  {
     "code": "mg",
     "alpha2": "MG",
     "name": "Madagascar",
@@ -1518,17 +1199,6 @@
     "flag": "assets/flags/4x3/mh.svg"
   },
   {
-    "code": "mq",
-    "alpha2": "MQ",
-    "name": "Martinique",
-    "nameJa": "マルティニーク",
-    "nativeName": "Martinique",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Fort-de-France",
-    "flag": "assets/flags/4x3/mq.svg"
-  },
-  {
     "code": "mr",
     "alpha2": "MR",
     "name": "Mauritania",
@@ -1549,17 +1219,6 @@
     "continentName": "Africa",
     "capital": "Port Louis",
     "flag": "assets/flags/4x3/mu.svg"
-  },
-  {
-    "code": "yt",
-    "alpha2": "YT",
-    "name": "Mayotte",
-    "nameJa": "マヨット",
-    "nativeName": "Mayotte",
-    "continent": "AF",
-    "continentName": "Africa",
-    "capital": "Mamoudzou",
-    "flag": "assets/flags/4x3/yt.svg"
   },
   {
     "code": "mx",
@@ -1626,17 +1285,6 @@
     "continentName": "Europe",
     "capital": "Podgorica",
     "flag": "assets/flags/4x3/me.svg"
-  },
-  {
-    "code": "ms",
-    "alpha2": "MS",
-    "name": "Montserrat",
-    "nameJa": "モントセラト",
-    "nativeName": "Montserrat",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Plymouth",
-    "flag": "assets/flags/4x3/ms.svg"
   },
   {
     "code": "ma",
@@ -1716,17 +1364,6 @@
     "flag": "assets/flags/4x3/nl.svg"
   },
   {
-    "code": "nc",
-    "alpha2": "NC",
-    "name": "New Caledonia",
-    "nameJa": "ニューカレドニア",
-    "nativeName": "Nouvelle-Calédonie",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Nouméa",
-    "flag": "assets/flags/4x3/nc.svg"
-  },
-  {
     "code": "nz",
     "alpha2": "NZ",
     "name": "New Zealand",
@@ -1782,17 +1419,6 @@
     "flag": "assets/flags/4x3/nu.svg"
   },
   {
-    "code": "nf",
-    "alpha2": "NF",
-    "name": "Norfolk Island",
-    "nameJa": "ノーフォーク島",
-    "nativeName": "Norfolk Island",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Kingston",
-    "flag": "assets/flags/4x3/nf.svg"
-  },
-  {
     "code": "kp",
     "alpha2": "KP",
     "name": "North Korea",
@@ -1813,17 +1439,6 @@
     "continentName": "Europe",
     "capital": "Skopje",
     "flag": "assets/flags/4x3/mk.svg"
-  },
-  {
-    "code": "mp",
-    "alpha2": "MP",
-    "name": "Northern Mariana Islands",
-    "nameJa": "北マリアナ諸島",
-    "nativeName": "Northern Mariana Islands",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Saipan",
-    "flag": "assets/flags/4x3/mp.svg"
   },
   {
     "code": "no",
@@ -1936,17 +1551,6 @@
     "flag": "assets/flags/4x3/ph.svg"
   },
   {
-    "code": "pn",
-    "alpha2": "PN",
-    "name": "Pitcairn Islands",
-    "nameJa": "ピトケアン諸島",
-    "nativeName": "Pitcairn Islands",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Adamstown",
-    "flag": "assets/flags/4x3/pn.svg"
-  },
-  {
     "code": "pl",
     "alpha2": "PL",
     "name": "Poland",
@@ -1969,17 +1573,6 @@
     "flag": "assets/flags/4x3/pt.svg"
   },
   {
-    "code": "pr",
-    "alpha2": "PR",
-    "name": "Puerto Rico",
-    "nameJa": "プエルトリコ",
-    "nativeName": "Puerto Rico",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "San Juan",
-    "flag": "assets/flags/4x3/pr.svg"
-  },
-  {
     "code": "qa",
     "alpha2": "QA",
     "name": "Qatar",
@@ -2000,17 +1593,6 @@
     "continentName": "Africa",
     "capital": "Brazzaville",
     "flag": "assets/flags/4x3/cg.svg"
-  },
-  {
-    "code": "re",
-    "alpha2": "RE",
-    "name": "Reunion",
-    "nameJa": "レユニオン",
-    "nativeName": "La Réunion",
-    "continent": "AF",
-    "continentName": "Africa",
-    "capital": "Saint-Denis",
-    "flag": "assets/flags/4x3/re.svg"
   },
   {
     "code": "ro",
@@ -2046,28 +1628,6 @@
     "flag": "assets/flags/4x3/rw.svg"
   },
   {
-    "code": "bl",
-    "alpha2": "BL",
-    "name": "Saint Barthelemy",
-    "nameJa": "サン・バルテルミー",
-    "nativeName": "Saint-Barthélemy",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Gustavia",
-    "flag": "assets/flags/4x3/bl.svg"
-  },
-  {
-    "code": "sh",
-    "alpha2": "SH",
-    "name": "Saint Helena",
-    "nameJa": "セントヘレナ",
-    "nativeName": "Saint Helena",
-    "continent": "AF",
-    "continentName": "Africa",
-    "capital": "Jamestown",
-    "flag": "assets/flags/4x3/sh.svg"
-  },
-  {
     "code": "kn",
     "alpha2": "KN",
     "name": "Saint Kitts and Nevis",
@@ -2088,28 +1648,6 @@
     "continentName": "North America",
     "capital": "Castries",
     "flag": "assets/flags/4x3/lc.svg"
-  },
-  {
-    "code": "mf",
-    "alpha2": "MF",
-    "name": "Saint Martin",
-    "nameJa": "サン・マルタン",
-    "nativeName": "Saint-Martin",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Marigot",
-    "flag": "assets/flags/4x3/mf.svg"
-  },
-  {
-    "code": "pm",
-    "alpha2": "PM",
-    "name": "Saint Pierre and Miquelon",
-    "nameJa": "サンピエール島・ミクロン島",
-    "nativeName": "Saint-Pierre-et-Miquelon",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Saint-Pierre",
-    "flag": "assets/flags/4x3/pm.svg"
   },
   {
     "code": "vc",
@@ -2222,17 +1760,6 @@
     "flag": "assets/flags/4x3/sg.svg"
   },
   {
-    "code": "sx",
-    "alpha2": "SX",
-    "name": "Sint Maarten",
-    "nameJa": "シント・マールテン",
-    "nativeName": "Sint Maarten",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Philipsburg",
-    "flag": "assets/flags/4x3/sx.svg"
-  },
-  {
     "code": "sk",
     "alpha2": "SK",
     "name": "Slovakia",
@@ -2286,17 +1813,6 @@
     "continentName": "Africa",
     "capital": "Pretoria",
     "flag": "assets/flags/4x3/za.svg"
-  },
-  {
-    "code": "gs",
-    "alpha2": "GS",
-    "name": "South Georgia and the South Sandwich Islands",
-    "nameJa": "サウスジョージア・サウスサンドウィッチ諸島",
-    "nativeName": "South Georgia",
-    "continent": "AN",
-    "continentName": "Antarctica",
-    "capital": "King Edward Point",
-    "flag": "assets/flags/4x3/gs.svg"
   },
   {
     "code": "kr",
@@ -2363,17 +1879,6 @@
     "continentName": "South America",
     "capital": "Paramaribo",
     "flag": "assets/flags/4x3/sr.svg"
-  },
-  {
-    "code": "sj",
-    "alpha2": "SJ",
-    "name": "Svalbard and Jan Mayen",
-    "nameJa": "スバールバル諸島・ヤンマイエン島",
-    "nativeName": "Svalbard og Jan Mayen",
-    "continent": "EU",
-    "continentName": "Europe",
-    "capital": "Longyearbyen",
-    "flag": "assets/flags/4x3/sj.svg"
   },
   {
     "code": "se",
@@ -2464,17 +1969,6 @@
     "flag": "assets/flags/4x3/tg.svg"
   },
   {
-    "code": "tk",
-    "alpha2": "TK",
-    "name": "Tokelau",
-    "nameJa": "トケラウ",
-    "nativeName": "Tokelau",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Fakaofo",
-    "flag": "assets/flags/4x3/tk.svg"
-  },
-  {
     "code": "to",
     "alpha2": "TO",
     "name": "Tonga",
@@ -2530,17 +2024,6 @@
     "flag": "assets/flags/4x3/tm.svg"
   },
   {
-    "code": "tc",
-    "alpha2": "TC",
-    "name": "Turks and Caicos Islands",
-    "nameJa": "タークス・カイコス諸島",
-    "nativeName": "Turks and Caicos Islands",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Cockburn Town",
-    "flag": "assets/flags/4x3/tc.svg"
-  },
-  {
     "code": "tv",
     "alpha2": "TV",
     "name": "Tuvalu",
@@ -2550,28 +2033,6 @@
     "continentName": "Oceania",
     "capital": "Funafuti",
     "flag": "assets/flags/4x3/tv.svg"
-  },
-  {
-    "code": "um",
-    "alpha2": "UM",
-    "name": "U.S. Minor Outlying Islands",
-    "nameJa": "合衆国領有小離島",
-    "nativeName": "United States Minor Outlying Islands",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "",
-    "flag": "assets/flags/4x3/um.svg"
-  },
-  {
-    "code": "vi",
-    "alpha2": "VI",
-    "name": "U.S. Virgin Islands",
-    "nameJa": "米領ヴァージン諸島",
-    "nativeName": "United States Virgin Islands",
-    "continent": "NA",
-    "continentName": "North America",
-    "capital": "Charlotte Amalie",
-    "flag": "assets/flags/4x3/vi.svg"
   },
   {
     "code": "ug",
@@ -2693,17 +2154,6 @@
     "continentName": "Asia",
     "capital": "Hanoi",
     "flag": "assets/flags/4x3/vn.svg"
-  },
-  {
-    "code": "wf",
-    "alpha2": "WF",
-    "name": "Wallis and Futuna",
-    "nameJa": "ウォリス・フツナ",
-    "nativeName": "Wallis et Futuna",
-    "continent": "OC",
-    "continentName": "Oceania",
-    "capital": "Mata-Utu",
-    "flag": "assets/flags/4x3/wf.svg"
   },
   {
     "code": "eh",

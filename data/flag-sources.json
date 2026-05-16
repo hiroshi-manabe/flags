@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T22:34:30.313Z",
+  "generatedAt": "2026-05-16T22:43:35.023Z",
   "flagIcons": {
     "package": "flag-icons",
     "version": "7.5.0",
@@ -19,5 +19,11 @@
     "repository": "https://github.com/annexare/Countries",
     "dataPath": "data/countries.json"
   },
-  "count": 250
+  "count": 200,
+  "assetCount": 250,
+  "quizDataset": {
+    "dataPath": "data/countries.json",
+    "count": 200,
+    "rule": "193 UN member states, 2 UN observer states, and 5 common extra flags: Cook Islands, Niue, Taiwan, Kosovo, Western Sahara."
+  }
 }

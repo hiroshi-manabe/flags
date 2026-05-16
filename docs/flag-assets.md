@@ -2,7 +2,9 @@
 
 The project includes 250 ISO-style country and territory flag SVGs in `assets/flags/4x3/`.
 
-Metadata is generated in `data/countries.json` with English names, Japanese names, native names, continents, capitals, and asset paths.
+The app-facing quiz dataset contains 200 entries in `data/countries.json`: 193 UN member states, 2 UN observer states, and 5 common extra flags: Cook Islands, Niue, Taiwan, Kosovo, and Western Sahara.
+
+Metadata is generated with English names, Japanese names, native names, continents, capitals, and asset paths.
 
 Japanese country names are also generated as a compact lookup map in `data/countries-ja.json`.
 

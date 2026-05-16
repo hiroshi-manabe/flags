@@ -18,6 +18,21 @@ const continentNames = {
   SA: "South America",
 };
 const japaneseRegionNames = new Intl.DisplayNames(["ja"], { type: "region" });
+const quizCountryCodes = new Set(
+  `
+  AD AE AF AG AL AM AO AR AT AU AZ BA BB BD BE BF BG BH BI BJ BN BO BR BS BT BW BY BZ
+  CA CD CF CG CH CI CL CM CN CO CR CU CV CY CZ DE DJ DK DM DO DZ EC EE EG ER ES ET
+  FI FJ FM FR GA GB GD GE GH GM GN GQ GR GT GW GY HN HR HT HU ID IE IL IN IQ IR IS IT
+  JM JO JP KE KG KH KI KM KN KP KR KW KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME
+  MG MH MK ML MM MN MR MT MU MV MW MX MY MZ NA NE NG NI NL NO NP NR NZ OM PA PE PG
+  PH PK PL PT PW PY QA RO RS RU RW SA SB SC SD SE SG SI SK SL SM SN SO SR SS ST SV SY
+  SZ TD TG TH TJ TL TM TN TO TR TT TV TZ UA UG US UY UZ VC VE VN VU WS YE ZA ZM ZW
+  VA PS CK NU TW XK EH
+  `
+    .trim()
+    .split(/\s+/)
+    .map((code) => code.toLowerCase()),
+);
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, encoding: "utf8", stdio: "pipe" });
@@ -59,7 +74,7 @@ const flagFiles = new Set(
     .map((file) => basename(file, ".svg")),
 );
 
-const records = Object.entries(countries)
+const assetRecords = Object.entries(countries)
   .map(([alpha2, country]) => {
     const code = alpha2.toLowerCase();
     if (!flagFiles.has(code)) {
@@ -81,7 +96,15 @@ const records = Object.entries(countries)
   .filter(Boolean)
   .sort((a, b) => a.name.localeCompare(b.name));
 
-for (const country of records) {
+const records = assetRecords.filter((country) => quizCountryCodes.has(country.code));
+const missingQuizCodes = [...quizCountryCodes].filter(
+  (code) => !records.some((country) => country.code === code),
+);
+if (missingQuizCodes.length > 0) {
+  throw new Error(`Missing quiz assets or metadata for: ${missingQuizCodes.join(", ")}`);
+}
+
+for (const country of assetRecords) {
   cpSync(join(sourceFlagDir, `${country.code}.svg`), join(targetFlagDir, `${country.code}.svg`));
 }
 
@@ -120,6 +143,12 @@ writeFileSync(
         dataPath: "data/countries.json",
       },
       count: records.length,
+      assetCount: assetRecords.length,
+      quizDataset: {
+        dataPath: "data/countries.json",
+        count: records.length,
+        rule: "193 UN member states, 2 UN observer states, and 5 common extra flags: Cook Islands, Niue, Taiwan, Kosovo, Western Sahara.",
+      },
     },
     null,
     2,
@@ -129,8 +158,9 @@ writeFileSync(
 writeFileSync(
   join(docsDir, "flag-assets.md"),
   `# Flag Assets\n\n` +
-    `The project includes ${records.length} ISO-style country and territory flag SVGs in \`assets/flags/4x3/\`.\n\n` +
-    `Metadata is generated in \`data/countries.json\` with English names, Japanese names, native names, continents, capitals, and asset paths.\n\n` +
+    `The project includes ${assetRecords.length} ISO-style country and territory flag SVGs in \`assets/flags/4x3/\`.\n\n` +
+    `The app-facing quiz dataset contains ${records.length} entries in \`data/countries.json\`: 193 UN member states, 2 UN observer states, and 5 common extra flags: Cook Islands, Niue, Taiwan, Kosovo, and Western Sahara.\n\n` +
+    `Metadata is generated with English names, Japanese names, native names, continents, capitals, and asset paths.\n\n` +
     `Japanese country names are also generated as a compact lookup map in \`data/countries-ja.json\`.\n\n` +
     `Sources:\n\n` +
     `- \`flag-icons@${flagIconsVersion}\`, MIT license, https://github.com/lipis/flag-icons\n` +
@@ -140,4 +170,4 @@ writeFileSync(
     `\`\`\`sh\nnode tools/import-flag-assets.mjs\n\`\`\`\n`,
 );
 
-console.log(`Imported ${records.length} flags into ${targetFlagDir}`);
+console.log(`Imported ${assetRecords.length} flag assets and ${records.length} quiz entries`);
