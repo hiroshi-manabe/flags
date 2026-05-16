@@ -205,6 +205,22 @@ Keyboard selection should submit immediately. Do not require a separate confirma
 
 Ignore repeated keyboard events while answer feedback is locked or while the next question is being prepared.
 
+## Timing
+
+Use a short answer time limit, initially around 3 seconds per question.
+
+Show the remaining time visually with a horizontal progress bar. The bar should be easy to perceive at a glance and should not shift the answer layout as it changes.
+
+Timer behavior:
+
+- Start the timer when the flag and both answer choices are visible.
+- Stop the timer immediately when the player answers by tap, click, Left Arrow, or Right Arrow.
+- If time expires before an answer, treat the item as missed for scheduling and mastery.
+- Track timeouts separately from wrong taps/clicks so later tuning can distinguish "confused" from "too slow."
+- Lock all inputs during feedback and question transition.
+
+The 3-second limit is meant to encourage recognition rather than slow elimination. It may need tuning for younger children, early onboarding, or accessibility.
+
 ## Implementation Notes
 
 The first production implementation should be simple and transparent:
@@ -216,6 +232,7 @@ The first production implementation should be simple and transparent:
 - Introduce new items only when the current pool is stable enough.
 - Use two-choice questions.
 - Place the two choices left and right, with immediate Left Arrow / Right Arrow selection.
+- Add a visible 3-second progress-bar timer for each question.
 - Treat every answer as target-practice for the shown flag, and optionally as weak exposure for the distractor.
 
 The raw asset set can stay larger than the app-facing quiz dataset. The app should treat `data/countries.json` as the source of truth for playable flags.
