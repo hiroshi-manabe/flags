@@ -48,6 +48,47 @@ Use fully random target selection from `data/countries.json`:
 
 All Flags Mode may still record answers for statistics, but it should not be treated as the primary scheduler. Its purpose is challenge, variety, and checking broad exposure.
 
+## HUD
+
+The HUD should be compact and readable on iPad mini. It should show useful state without competing with the flag and two answer choices.
+
+### Infinite Mode HUD
+
+Show current-session accuracy:
+
+- Correct answers / questions shown.
+- Percentage accuracy.
+
+Example:
+
+```text
+12/16 75%
+```
+
+The denominator is the number of questions shown in the current session, including timeouts.
+
+### All Flags Mode HUD
+
+Show current-session accuracy:
+
+- Correct answers / questions shown.
+- Percentage accuracy.
+
+Also show full-run progress through the 200-entry quiz dataset:
+
+- Seen questions / total questions.
+- Total is 200.
+- Include a horizontal progress bar for run completion.
+
+Example:
+
+```text
+Accuracy 42/50 84%
+Flags 50/200
+```
+
+All Flags Mode should avoid repeating targets until all 200 have appeared once in the run.
+
 ## Learning Principles
 
 Infinite Mode should not sample randomly from all 200 flags. It should introduce a limited active set, repeat missed flags soon, and return correct flags later to confirm durable recall.
@@ -261,6 +302,7 @@ The first production implementation should be simple and transparent:
 
 - Load `data/countries.json`.
 - Provide Infinite Mode and All Flags Mode.
+- Show a mode-aware HUD: accuracy in both modes, plus 200-flag progress in All Flags Mode.
 - Keep player progress in local storage.
 - Maintain a queue of due items by question count.
 - Maintain a small active learning pool.
