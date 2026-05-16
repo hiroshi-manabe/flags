@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f4ea">
+    <title>Flag Buddy</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app" aria-labelledby="app-title">
+      <section class="quiz">
+        <p class="eyebrow">Flag practice</p>
+        <h1 id="app-title">Flag Buddy</h1>
+        <div class="flag-card" aria-label="Flag question">
+          <div class="flag" role="img" aria-label="Flag of Japan">
+            <span class="sun"></span>
+          </div>
+        </div>
+        <p class="prompt">Which country uses this flag?</p>
+        <div class="choices" aria-label="Answer choices">
+          <button type="button" data-correct="true">Japan</button>
+          <button type="button">Canada</button>
+          <button type="button">France</button>
+          <button type="button">Brazil</button>
+        </div>
+        <p class="feedback" aria-live="polite">Tap an answer to start.</p>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
