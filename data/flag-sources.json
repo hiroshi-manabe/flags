@@ -1,11 +1,16 @@
 {
-  "generatedAt": "2026-05-16T22:31:30.813Z",
+  "generatedAt": "2026-05-16T22:34:30.313Z",
   "flagIcons": {
     "package": "flag-icons",
     "version": "7.5.0",
     "license": "MIT",
     "repository": "https://github.com/lipis/flag-icons",
     "assetPath": "assets/flags/4x3"
+  },
+  "japaneseNames": {
+    "source": "Intl.DisplayNames",
+    "locale": "ja",
+    "dataPath": "data/countries-ja.json"
   },
   "countriesList": {
     "package": "countries-list",

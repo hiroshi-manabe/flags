@@ -17,6 +17,7 @@ const continentNames = {
   OC: "Oceania",
   SA: "South America",
 };
+const japaneseRegionNames = new Intl.DisplayNames(["ja"], { type: "region" });
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, encoding: "utf8", stdio: "pipe" });
@@ -69,6 +70,7 @@ const records = Object.entries(countries)
       code,
       alpha2,
       name: country.name,
+      nameJa: japaneseRegionNames.of(alpha2),
       nativeName: country.native,
       continent: country.continent,
       continentName: continentNames[country.continent] || country.continent,
@@ -84,6 +86,14 @@ for (const country of records) {
 }
 
 writeFileSync(join(dataDir, "countries.json"), `${JSON.stringify(records, null, 2)}\n`);
+writeFileSync(
+  join(dataDir, "countries-ja.json"),
+  `${JSON.stringify(
+    Object.fromEntries(records.map((country) => [country.code, country.nameJa])),
+    null,
+    2,
+  )}\n`,
+);
 
 writeFileSync(
   join(dataDir, "flag-sources.json"),
@@ -96,6 +106,11 @@ writeFileSync(
         license: "MIT",
         repository: "https://github.com/lipis/flag-icons",
         assetPath: "assets/flags/4x3",
+      },
+      japaneseNames: {
+        source: "Intl.DisplayNames",
+        locale: "ja",
+        dataPath: "data/countries-ja.json",
       },
       countriesList: {
         package: "countries-list",
@@ -115,10 +130,12 @@ writeFileSync(
   join(docsDir, "flag-assets.md"),
   `# Flag Assets\n\n` +
     `The project includes ${records.length} ISO-style country and territory flag SVGs in \`assets/flags/4x3/\`.\n\n` +
-    `Metadata is generated in \`data/countries.json\` with country names, native names, continents, capitals, and asset paths.\n\n` +
+    `Metadata is generated in \`data/countries.json\` with English names, Japanese names, native names, continents, capitals, and asset paths.\n\n` +
+    `Japanese country names are also generated as a compact lookup map in \`data/countries-ja.json\`.\n\n` +
     `Sources:\n\n` +
     `- \`flag-icons@${flagIconsVersion}\`, MIT license, https://github.com/lipis/flag-icons\n` +
     `- \`countries-list@${countriesListVersion}\`, MIT license, https://github.com/annexare/Countries\n\n` +
+    `Japanese display names come from the runtime ICU/CLDR data exposed through \`Intl.DisplayNames\` with locale \`ja\`.\n\n` +
     `Regenerate with:\n\n` +
     `\`\`\`sh\nnode tools/import-flag-assets.mjs\n\`\`\`\n`,
 );
