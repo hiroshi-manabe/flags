@@ -323,10 +323,6 @@ Initial blocked pairs:
 
 - Indonesia / Monaco.
 - Chad / Romania.
-- Ireland / Cote d'Ivoire.
-- Mali / Guinea.
-- Luxembourg / Netherlands.
-- New Zealand / Australia.
 
 ## Input Design
 
