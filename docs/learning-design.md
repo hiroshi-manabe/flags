@@ -68,6 +68,21 @@ Play screen:
 
 The play-screen back button should return immediately to the mode selection screen with no confirmation dialog.
 
+## UI Copy
+
+All user-visible app text should be Japanese.
+
+This includes:
+
+- Mode names.
+- Buttons.
+- Settings labels.
+- HUD labels.
+- Feedback messages.
+- Country names shown as answer choices.
+
+Use `nameJa` from `data/countries.json` or `data/countries-ja.json` for country answer labels. English identifiers may remain in code, docs, and internal data fields.
+
 ## Settings
 
 Settings should be available from the mode selection screen.
