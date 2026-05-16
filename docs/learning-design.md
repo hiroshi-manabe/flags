@@ -14,9 +14,43 @@ It contains 200 entries:
 
 Raw SVG assets for additional territories remain available in `assets/flags/4x3/`, but they are not part of the default quiz dataset.
 
+## Modes
+
+The app should provide two modes.
+
+### Infinite Mode
+
+Infinite Mode is the main learning mode.
+
+Use the mastery-based scheduler described below:
+
+- Start from a small active set.
+- Introduce new flags gradually.
+- Pair new flags with seed-known distractors first.
+- Repeat missed flags soon.
+- Review correct flags later using spacing.
+- Update per-flag mastery after every answer.
+- Continue indefinitely until the player stops.
+
+This mode is optimized for learning and retention, not for covering every flag uniformly in one sitting.
+
+### All Flags Mode
+
+All Flags Mode is a complete random challenge over the 200-entry quiz dataset.
+
+Use fully random target selection from `data/countries.json`:
+
+- Do not use the active learning pool.
+- Do not prioritize due items.
+- Do not introduce flags gradually.
+- Do not bias toward missed flags during the run.
+- Choose the distractor randomly from the same dataset, excluding the target.
+
+All Flags Mode may still record answers for statistics, but it should not be treated as the primary scheduler. Its purpose is challenge, variety, and checking broad exposure.
+
 ## Learning Principles
 
-The quiz should not sample randomly from all 200 flags. It should introduce a limited active set, repeat missed flags soon, and return correct flags later to confirm durable recall.
+Infinite Mode should not sample randomly from all 200 flags. It should introduce a limited active set, repeat missed flags soon, and return correct flags later to confirm durable recall.
 
 Research background:
 
@@ -226,6 +260,7 @@ The 3-second limit is meant to encourage recognition rather than slow eliminatio
 The first production implementation should be simple and transparent:
 
 - Load `data/countries.json`.
+- Provide Infinite Mode and All Flags Mode.
 - Keep player progress in local storage.
 - Maintain a queue of due items by question count.
 - Maintain a small active learning pool.
