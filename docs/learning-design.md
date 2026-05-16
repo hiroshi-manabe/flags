@@ -48,6 +48,40 @@ Use fully random target selection from `data/countries.json`:
 
 All Flags Mode may still record answers for statistics, but it should not be treated as the primary scheduler. Its purpose is challenge, variety, and checking broad exposure.
 
+## Navigation
+
+The app should have two high-level screens.
+
+Mode selection screen:
+
+- Show the two mode choices: Infinite Mode and All Flags Mode.
+- Include a settings button.
+- Starting a mode moves directly to the play screen.
+
+Play screen:
+
+- Show the current quiz mode.
+- Show the mode-aware HUD.
+- Show the timer bar when the timer setting is enabled.
+- Show the flag and two left/right answer choices.
+- Include a back button.
+
+The play-screen back button should return immediately to the mode selection screen with no confirmation dialog.
+
+## Settings
+
+Settings should be available from the mode selection screen.
+
+Timer options:
+
+- 3 seconds.
+- 10 seconds.
+- No limit.
+
+The default timer setting is 3 seconds.
+
+Store settings locally, probably in `localStorage`.
+
 ## HUD
 
 The HUD should be compact and readable on iPad mini. It should show useful state without competing with the flag and two answer choices.
@@ -282,9 +316,9 @@ Ignore repeated keyboard events while answer feedback is locked or while the nex
 
 ## Timing
 
-Use a short answer time limit, initially around 3 seconds per question.
+Use the configured answer time limit. The default is 3 seconds per question.
 
-Show the remaining time visually with a horizontal progress bar. The bar should be easy to perceive at a glance and should not shift the answer layout as it changes.
+When the timer is enabled, show the remaining time visually with a horizontal progress bar. The bar should be easy to perceive at a glance and should not shift the answer layout as it changes.
 
 Timer behavior:
 
@@ -294,7 +328,7 @@ Timer behavior:
 - Track timeouts separately from wrong taps/clicks so later tuning can distinguish "confused" from "too slow."
 - Lock all inputs during feedback and question transition.
 
-The 3-second limit is meant to encourage recognition rather than slow elimination. It may need tuning for younger children, early onboarding, or accessibility.
+The 3-second default is meant to encourage recognition rather than slow elimination. The 10-second and no-limit settings provide easier pacing for younger children, early onboarding, or accessibility.
 
 ## Implementation Notes
 
@@ -302,6 +336,8 @@ The first production implementation should be simple and transparent:
 
 - Load `data/countries.json`.
 - Provide Infinite Mode and All Flags Mode.
+- Provide mode selection and play screens, with a no-confirmation back button from play to mode selection.
+- Provide a mode-selection settings button for timer options: 3 seconds, 10 seconds, and no limit.
 - Show a mode-aware HUD: accuracy in both modes, plus 200-flag progress in All Flags Mode.
 - Keep player progress in local storage.
 - Maintain a queue of due items by question count.
@@ -309,7 +345,7 @@ The first production implementation should be simple and transparent:
 - Introduce new items only when the current pool is stable enough.
 - Use two-choice questions.
 - Place the two choices left and right, with immediate Left Arrow / Right Arrow selection.
-- Add a visible 3-second progress-bar timer for each question.
+- Add a visible progress-bar timer for timed questions.
 - Treat every answer as target-practice for the shown flag, and optionally as weak exposure for the distractor.
 
 The raw asset set can stay larger than the app-facing quiz dataset. The app should treat `data/countries.json` as the source of truth for playable flags.
