@@ -190,6 +190,21 @@ Hard:
 
 Avoid repeating the same target-distractor pair too often. Store recent distractors per flag and rotate choices.
 
+## Input Design
+
+Two answer choices should be laid out left and right.
+
+Supported input:
+
+- Tap on iPad.
+- Mouse click.
+- Keyboard Left Arrow for the left choice.
+- Keyboard Right Arrow for the right choice.
+
+Keyboard selection should submit immediately. Do not require a separate confirmation key. Arrow-key answers should use the same code path as tap and click answers so scoring, feedback, and scheduling stay identical across input methods.
+
+Ignore repeated keyboard events while answer feedback is locked or while the next question is being prepared.
+
 ## Implementation Notes
 
 The first production implementation should be simple and transparent:
@@ -200,6 +215,7 @@ The first production implementation should be simple and transparent:
 - Maintain a small active learning pool.
 - Introduce new items only when the current pool is stable enough.
 - Use two-choice questions.
+- Place the two choices left and right, with immediate Left Arrow / Right Arrow selection.
 - Treat every answer as target-practice for the shown flag, and optionally as weak exposure for the distractor.
 
 The raw asset set can stay larger than the app-facing quiz dataset. The app should treat `data/countries.json` as the source of truth for playable flags.
