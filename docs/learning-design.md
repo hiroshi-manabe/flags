@@ -38,12 +38,15 @@ This mode is optimized for learning and retention, not for covering every flag u
 
 All Flags Mode is a complete random challenge over the 200-entry quiz dataset.
 
-Use fully random target selection from `data/countries.json`:
+When entering All Flags Mode, start a fresh run. Leaving and re-entering the mode should reset the run rather than resume the previous shuffled order.
+
+Use a shuffled random target order from `data/countries.json`:
 
 - Do not use the active learning pool.
 - Do not prioritize due items.
 - Do not introduce flags gradually.
 - Do not bias toward missed flags during the run.
+- Avoid repeating targets until all 200 have appeared once in the run.
 - Choose the distractor randomly from the same dataset, excluding the target.
 
 All Flags Mode may still record answers for statistics, but it should not be treated as the primary scheduler. Its purpose is challenge, variety, and checking broad exposure.
@@ -313,6 +316,17 @@ Hard:
 - Historically common confusions, such as similar tricolors.
 
 Avoid repeating the same target-distractor pair too often. Store recent distractors per flag and rotate choices.
+
+For v1, do not implement general visually similar distractor detection. Do implement a small blocked-pair list for flags that are effectively indistinguishable in the quiz UI, and never pair those as target and distractor.
+
+Initial blocked pairs:
+
+- Indonesia / Monaco.
+- Chad / Romania.
+- Ireland / Cote d'Ivoire.
+- Mali / Guinea.
+- Luxembourg / Netherlands.
+- New Zealand / Australia.
 
 ## Input Design
 
