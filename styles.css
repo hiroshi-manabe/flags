@@ -59,18 +59,11 @@ h1 {
 
 .flag {
   aspect-ratio: 3 / 2;
-  display: grid;
-  place-items: center;
+  display: block;
+  width: 100%;
   overflow: hidden;
   border: 1px solid rgba(25, 32, 36, 0.12);
-  background: #fff;
-}
-
-.sun {
-  width: 32%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #bc002d;
+  object-fit: cover;
 }
 
 .prompt,

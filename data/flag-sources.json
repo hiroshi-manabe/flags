@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-05-16T22:31:30.813Z",
+  "flagIcons": {
+    "package": "flag-icons",
+    "version": "7.5.0",
+    "license": "MIT",
+    "repository": "https://github.com/lipis/flag-icons",
+    "assetPath": "assets/flags/4x3"
+  },
+  "countriesList": {
+    "package": "countries-list",
+    "version": "3.3.0",
+    "license": "MIT",
+    "repository": "https://github.com/annexare/Countries",
+    "dataPath": "data/countries.json"
+  },
+  "count": 250
+}
