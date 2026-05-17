@@ -298,10 +298,11 @@ function submitAnswer(choiceIndex) {
 
 function renderFeedback(choiceIndex, correct, timedOut) {
   const correctButton = dom.choices[state.current.correctIndex];
+  const nameToFlag = state.settings.questionDirection === "name-to-flag";
   correctButton.classList.add("correct");
 
   if (timedOut) {
-    dom.feedback.textContent = `時間切れ。正解は${state.current.target.nameJa}`;
+    dom.feedback.textContent = nameToFlag ? "時間切れ。緑の国旗が正解" : `時間切れ。正解は${state.current.target.nameJa}`;
     return;
   }
 
@@ -311,7 +312,7 @@ function renderFeedback(choiceIndex, correct, timedOut) {
   }
 
   dom.choices[choiceIndex].classList.add("incorrect");
-  dom.feedback.textContent = `正解は${state.current.target.nameJa}`;
+  dom.feedback.textContent = nameToFlag ? "緑の国旗が正解" : `正解は${state.current.target.nameJa}`;
 }
 
 function finishAllFlagsMode() {
