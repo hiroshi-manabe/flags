@@ -14,6 +14,7 @@ const BLOCKED_PAIRS = [
 ];
 
 const dom = {
+  loadingScreen: document.querySelector('[data-screen="loading"]'),
   modeScreen: document.querySelector('[data-screen="mode"]'),
   playScreen: document.querySelector('[data-screen="play"]'),
   settingsPanel: document.querySelector("[data-settings]"),
@@ -30,6 +31,8 @@ const dom = {
   choices: [...document.querySelectorAll("[data-choice]")],
   timerOptions: [...document.querySelectorAll("[data-timer-value]")],
   eraseMessage: document.querySelector("[data-erase-message]"),
+  loadBar: document.querySelector("[data-load-bar]"),
+  loadCount: document.querySelector("[data-load-count]"),
 };
 
 const state = {
@@ -44,6 +47,7 @@ const state = {
   timerId: null,
   timerFrame: null,
   feedbackId: null,
+  imageCache: new Map(),
 };
 
 init();
@@ -54,6 +58,7 @@ async function init() {
   state.progress = normalizeProgress(state.progress);
   bindEvents();
   updateSettingsUI();
+  await preloadRuntimeFlags();
   showModeScreen();
 }
 
@@ -121,6 +126,7 @@ function showModeScreen() {
   state.current = null;
   state.locked = false;
   dom.playScreen.classList.add("is-hidden");
+  dom.loadingScreen.classList.add("is-hidden");
   dom.modeScreen.classList.remove("is-hidden");
 }
 
@@ -172,7 +178,7 @@ function nextQuestion() {
 
 function renderQuestion() {
   const { target, choices } = state.current;
-  dom.flag.src = target.flag;
+  dom.flag.src = flagSource(target);
   dom.flag.alt = `${target.nameJa}の国旗`;
   dom.prompt.textContent = "どっちの国旗？";
   dom.choices.forEach((button, index) => {
@@ -181,6 +187,49 @@ function renderQuestion() {
     button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${choices[index].nameJa}`);
   });
   updateHUD();
+}
+
+async function preloadRuntimeFlags() {
+  let loaded = 0;
+  updateLoadProgress(loaded);
+  await Promise.all(
+    state.countries.map(async (country) => {
+      country.runtimeFlag = flagSource(country);
+      try {
+        await preloadImage(country.runtimeFlag);
+      } catch {
+        country.runtimeFlag = country.flagSvg || country.flag;
+        await preloadImage(country.runtimeFlag);
+      } finally {
+        loaded += 1;
+        updateLoadProgress(loaded);
+      }
+    }),
+  );
+}
+
+function preloadImage(src) {
+  if (!src) return Promise.reject(new Error("Missing image source"));
+  if (state.imageCache.has(src)) return state.imageCache.get(src);
+
+  const promise = new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(src);
+    image.onerror = () => reject(new Error(`Failed to preload ${src}`));
+    image.src = src;
+  });
+  state.imageCache.set(src, promise);
+  return promise;
+}
+
+function updateLoadProgress(loaded) {
+  const total = state.countries.length || 200;
+  dom.loadCount.textContent = String(loaded);
+  dom.loadBar.style.width = `${(loaded / total) * 100}%`;
+}
+
+function flagSource(country) {
+  return country.runtimeFlag || country.flagPng || country.flagSvg || country.flag;
 }
 
 function submitAnswer(choiceIndex) {

@@ -9,7 +9,14 @@
   </head>
   <body>
     <main class="app">
-      <section class="screen mode-screen" data-screen="mode" aria-labelledby="app-title">
+      <section class="screen loading-screen" data-screen="loading" aria-live="polite">
+        <p class="eyebrow">国旗クイズ</p>
+        <h1>読み込み中</h1>
+        <div class="load-bar" aria-hidden="true"><span data-load-bar></span></div>
+        <p class="loading-copy"><span data-load-count>0</span>/200</p>
+      </section>
+
+      <section class="screen mode-screen is-hidden" data-screen="mode" aria-labelledby="app-title">
         <div class="top-row">
           <div>
             <p class="eyebrow">国旗クイズ</p>

@@ -57,9 +57,16 @@ The app should have two high-level screens.
 
 Mode selection screen:
 
+- Show only after the 200 runtime flag images are preloaded.
 - Show the two mode choices: Infinite Mode and All Flags Mode.
 - Include a settings button.
 - Starting a mode moves directly to the play screen.
+
+Loading screen:
+
+- Show while `data/countries.json` and the runtime flag images are loading.
+- Show a simple progress count and progress bar.
+- Prefer PNG runtime assets for play, with SVG fallback if needed.
 
 Play screen:
 
