@@ -4,7 +4,8 @@ const STORAGE_KEYS = {
 };
 
 const TIMER_OPTIONS = [3000, 10000, 0];
-const DEFAULT_SETTINGS = { timerMs: 3000 };
+const QUESTION_DIRECTIONS = ["name-to-flag", "flag-to-name"];
+const DEFAULT_SETTINGS = { timerMs: 3000, questionDirection: "name-to-flag" };
 const FEEDBACK_MS = 850;
 const MIN_CORRECT_GAP = 5;
 const SEED_CODES = ["jp", "us", "gb", "fr", "de", "it", "ca", "br", "cn", "kr", "au", "in", "es", "mx", "ch", "se"];
@@ -30,6 +31,7 @@ const dom = {
   feedback: document.querySelector("[data-feedback]"),
   choices: [...document.querySelectorAll("[data-choice]")],
   timerOptions: [...document.querySelectorAll("[data-timer-value]")],
+  questionOptions: [...document.querySelectorAll("[data-question-value]")],
   eraseMessage: document.querySelector("[data-erase-message]"),
   loadBar: document.querySelector("[data-load-bar]"),
   loadCount: document.querySelector("[data-load-count]"),
@@ -79,6 +81,14 @@ function bindEvents() {
   dom.timerOptions.forEach((button) => {
     button.addEventListener("click", () => {
       state.settings.timerMs = Number(button.dataset.timerValue);
+      saveJSON(STORAGE_KEYS.settings, state.settings);
+      updateSettingsUI();
+    });
+  });
+
+  dom.questionOptions.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.settings.questionDirection = button.dataset.questionValue;
       saveJSON(STORAGE_KEYS.settings, state.settings);
       updateSettingsUI();
     });
@@ -178,15 +188,47 @@ function nextQuestion() {
 
 function renderQuestion() {
   const { target, choices } = state.current;
-  dom.flag.src = flagSource(target);
-  dom.flag.alt = `${target.nameJa}の国旗`;
-  dom.prompt.textContent = "どっちの国旗？";
-  dom.choices.forEach((button, index) => {
-    button.textContent = choices[index].nameJa;
-    button.disabled = false;
-    button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${choices[index].nameJa}`);
-  });
+  const nameToFlag = state.settings.questionDirection === "name-to-flag";
+  dom.flag.parentElement.classList.toggle("compact", nameToFlag);
+  dom.flag.classList.toggle("is-hidden", nameToFlag);
+  dom.prompt.classList.toggle("country-prompt", nameToFlag);
+
+  if (nameToFlag) {
+    dom.flag.removeAttribute("src");
+    dom.flag.alt = "";
+    dom.prompt.textContent = target.nameJa;
+    renderFlagChoices(choices);
+  } else {
+    dom.flag.src = flagSource(target);
+    dom.flag.alt = `${target.nameJa}の国旗`;
+    dom.prompt.textContent = "どっちの国旗？";
+    renderNameChoices(choices);
+  }
   updateHUD();
+}
+
+function renderNameChoices(choices) {
+  dom.choices.forEach((button, index) => {
+    const country = choices[index];
+    button.classList.remove("flag-choice");
+    button.textContent = country.nameJa;
+    button.disabled = false;
+    button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${country.nameJa}`);
+  });
+}
+
+function renderFlagChoices(choices) {
+  dom.choices.forEach((button, index) => {
+    const country = choices[index];
+    button.classList.add("flag-choice");
+    button.textContent = "";
+    const image = document.createElement("img");
+    image.src = flagSource(country);
+    image.alt = `${country.nameJa}の国旗`;
+    button.append(image);
+    button.disabled = false;
+    button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${country.nameJa}の国旗`);
+  });
 }
 
 async function preloadRuntimeFlags() {
@@ -275,10 +317,14 @@ function renderFeedback(choiceIndex, correct, timedOut) {
 function finishAllFlagsMode() {
   state.locked = true;
   dom.flag.removeAttribute("src");
+  dom.flag.classList.add("is-hidden");
+  dom.flag.parentElement.classList.add("compact");
+  dom.prompt.classList.remove("country-prompt");
   dom.flag.alt = "";
   dom.prompt.textContent = "全国旗モード終了";
   dom.feedback.textContent = "戻るボタンでモード選択に戻れます";
   dom.choices.forEach((button) => {
+    button.classList.remove("flag-choice");
     button.textContent = "終了";
     button.disabled = true;
   });
@@ -450,8 +496,14 @@ function updateHUD() {
 
 function updateSettingsUI() {
   if (!TIMER_OPTIONS.includes(state.settings.timerMs)) state.settings.timerMs = DEFAULT_SETTINGS.timerMs;
+  if (!QUESTION_DIRECTIONS.includes(state.settings.questionDirection)) {
+    state.settings.questionDirection = DEFAULT_SETTINGS.questionDirection;
+  }
   dom.timerOptions.forEach((button) => {
     button.classList.toggle("active", Number(button.dataset.timerValue) === state.settings.timerMs);
+  });
+  dom.questionOptions.forEach((button) => {
+    button.classList.toggle("active", button.dataset.questionValue === state.settings.questionDirection);
   });
 }
 
@@ -516,12 +568,18 @@ function clamp(value, min, max) {
 function loadJSON(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
+    if (!raw) return cloneFallback(fallback);
+    const parsed = JSON.parse(raw);
+    return fallback && typeof fallback === "object" && !Array.isArray(fallback) ? { ...fallback, ...parsed } : parsed;
   } catch {
-    return fallback;
+    return cloneFallback(fallback);
   }
 }
 
 function saveJSON(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function cloneFallback(fallback) {
+  return fallback && typeof fallback === "object" && !Array.isArray(fallback) ? { ...fallback } : fallback;
 }
