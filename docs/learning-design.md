@@ -73,7 +73,7 @@ Play screen:
 - Show the current quiz mode.
 - Show the mode-aware HUD.
 - Show the timer bar when the timer setting is enabled.
-- Show the flag and two left/right answer choices.
+- Show the prompt and two left/right answer choices.
 - Include a back button.
 
 The play-screen back button should return immediately to the mode selection screen with no confirmation dialog.
@@ -108,6 +108,17 @@ The default timer setting is 3 seconds.
 Store settings locally, probably in `localStorage`.
 
 Include a data erase button for verification and testing. It should clear local learning progress and reset the app's stored state. Settings may remain unchanged unless there is a strong reason to reset them too.
+
+Question direction options:
+
+- Country name prompt, two flag choices.
+- Flag prompt, two country name choices.
+
+The default should be country name prompt with two flag choices. This puts the country name on screen and asks the player to choose the matching flag.
+
+The question direction should be changed from settings.
+
+Both directions should use the same underlying scheduling, scoring, timer, HUD, and input handling. In the flag-choice direction, the target is still the country being practiced; the two choices are visual flag buttons rather than text-only country-name buttons.
 
 ## HUD
 
@@ -341,6 +352,8 @@ Initial blocked pairs:
 
 Two answer choices should be laid out left and right.
 
+Keep the two choices left and right even on narrow screens. Do not collapse them into a vertical stack. In country-name-to-flag mode, the two flag choices should remain side by side with stable dimensions.
+
 Supported input:
 
 - Tap on iPad.
@@ -377,13 +390,14 @@ The first production implementation should be simple and transparent:
 - Provide mode selection and play screens, with a no-confirmation back button from play to mode selection.
 - Provide a mode-selection settings button for timer options: 3 seconds, 10 seconds, and no limit.
 - Provide a settings-side data erase button for testing.
+- Provide a settings-side question direction control. Default to country name prompt with two flag choices.
 - Show a mode-aware HUD: accuracy in both modes, plus 200-flag progress in All Flags Mode.
 - Keep player progress in local storage.
 - Maintain a queue of due items by question count.
 - Maintain a small active learning pool.
 - Introduce new items only when the current pool is stable enough.
 - Use two-choice questions.
-- Place the two choices left and right, with immediate Left Arrow / Right Arrow selection.
+- Place the two choices left and right in both question directions, with immediate Left Arrow / Right Arrow selection.
 - Add a visible progress-bar timer for timed questions.
 - Treat every answer as target-practice for the shown flag, and optionally as weak exposure for the distractor.
 
