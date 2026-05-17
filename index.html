@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6f7f2">
     <title>国旗クイズ</title>
-    <link rel="stylesheet" href="styles.css?v=20260517-side-feedback">
+    <link rel="stylesheet" href="styles.css?v=20260517-result-marks">
   </head>
   <body>
     <main class="app">
@@ -38,6 +38,7 @@
       </section>
 
       <section class="screen play-screen is-hidden" data-screen="play" aria-labelledby="play-title">
+        <span class="screen-result-mark is-hidden" data-screen-mark aria-hidden="true"></span>
         <header class="play-header">
           <button class="back-button" type="button" data-action="back">← 戻る</button>
           <div class="mode-label" id="play-title">無限モード</div>
@@ -62,13 +63,14 @@
         <div class="question">
           <div class="flag-card">
             <img class="flag" data-flag alt="">
+            <span class="result-mark is-hidden" data-flag-mark aria-hidden="true"></span>
           </div>
           <p class="prompt" data-prompt>どっちの国旗？</p>
         </div>
 
         <div class="choices" aria-label="答え">
-          <button class="choice" type="button" data-choice="left"></button>
-          <button class="choice" type="button" data-choice="right"></button>
+          <button class="choice" type="button" data-choice="left"><span class="result-mark is-hidden" aria-hidden="true"></span></button>
+          <button class="choice" type="button" data-choice="right"><span class="result-mark is-hidden" aria-hidden="true"></span></button>
         </div>
 
         <p class="feedback" data-feedback aria-live="polite"></p>
@@ -102,6 +104,6 @@
         </div>
       </section>
     </main>
-    <script src="app.js?v=20260517-side-feedback"></script>
+    <script src="app.js?v=20260517-result-marks"></script>
   </body>
 </html>

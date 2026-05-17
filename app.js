@@ -27,6 +27,8 @@ const dom = {
   timer: document.querySelector("[data-timer]"),
   timerBar: document.querySelector("[data-timer-bar]"),
   flag: document.querySelector("[data-flag]"),
+  flagMark: document.querySelector("[data-flag-mark]"),
+  screenMark: document.querySelector("[data-screen-mark]"),
   prompt: document.querySelector("[data-prompt]"),
   feedback: document.querySelector("[data-feedback]"),
   choices: [...document.querySelectorAll("[data-choice]")],
@@ -163,6 +165,7 @@ function nextQuestion() {
   clearFeedbackDelay();
   stopTimer();
   clearChoiceStyles();
+  clearResultMarks();
   state.locked = false;
   dom.feedback.textContent = "";
 
@@ -210,8 +213,10 @@ function renderQuestion() {
 function renderNameChoices(choices) {
   dom.choices.forEach((button, index) => {
     const country = choices[index];
+    const mark = ensureChoiceMark(button);
     button.classList.remove("flag-choice");
-    button.textContent = country.nameJa;
+    button.textContent = "";
+    button.append(mark, document.createTextNode(country.nameJa));
     button.disabled = false;
     button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${country.nameJa}`);
   });
@@ -220,12 +225,13 @@ function renderNameChoices(choices) {
 function renderFlagChoices(choices) {
   dom.choices.forEach((button, index) => {
     const country = choices[index];
+    const mark = ensureChoiceMark(button);
     button.classList.add("flag-choice");
     button.textContent = "";
     const image = document.createElement("img");
     image.src = flagSource(country);
     image.alt = `${country.nameJa}の国旗`;
-    button.append(image);
+    button.append(image, mark);
     button.disabled = false;
     button.setAttribute("aria-label", `${index === 0 ? "左" : "右"}: ${country.nameJa}の国旗`);
   });
@@ -301,6 +307,7 @@ function renderFeedback(choiceIndex, correct, timedOut) {
   const nameToFlag = state.settings.questionDirection === "name-to-flag";
   const correctSide = state.current.correctIndex === 0 ? "左" : "右";
   correctButton.classList.add("correct");
+  renderResultMarks(choiceIndex, correct, timedOut, nameToFlag);
 
   if (timedOut) {
     dom.feedback.textContent = nameToFlag ? `時間切れ。正解は${correctSide}` : `時間切れ。正解は${state.current.target.nameJa}`;
@@ -318,6 +325,7 @@ function renderFeedback(choiceIndex, correct, timedOut) {
 
 function finishAllFlagsMode() {
   state.locked = true;
+  clearResultMarks();
   dom.flag.removeAttribute("src");
   dom.flag.classList.add("is-hidden");
   dom.flag.parentElement.classList.add("compact");
@@ -544,6 +552,62 @@ function clearChoiceStyles() {
   dom.choices.forEach((button) => {
     button.classList.remove("correct", "incorrect");
   });
+}
+
+function renderResultMarks(choiceIndex, correct, timedOut, nameToFlag) {
+  if (nameToFlag) {
+    if (correct) {
+      setScreenResultMark();
+      return;
+    }
+    if (!timedOut && choiceIndex !== null) setResultMark(choiceMark(choiceIndex), "ng");
+    setResultMark(choiceMark(state.current.correctIndex), "ok");
+    return;
+  }
+
+  setResultMark(dom.flagMark, correct ? "ok" : "ng");
+}
+
+function clearResultMarks() {
+  clearScreenResultMark();
+  clearOneResultMark(dom.flagMark);
+  dom.choices.forEach((button) => clearOneResultMark(ensureChoiceMark(button)));
+}
+
+function choiceMark(index) {
+  return ensureChoiceMark(dom.choices[index]);
+}
+
+function ensureChoiceMark(button) {
+  const existing = button.querySelector(".result-mark");
+  if (existing) return existing;
+
+  const mark = document.createElement("span");
+  mark.className = "result-mark is-hidden";
+  mark.setAttribute("aria-hidden", "true");
+  return mark;
+}
+
+function setResultMark(mark, type) {
+  mark.textContent = type === "ok" ? "○" : "×";
+  mark.classList.remove("is-hidden", "ok", "ng");
+  mark.classList.add(type);
+}
+
+function setScreenResultMark() {
+  dom.screenMark.textContent = "○";
+  dom.screenMark.classList.remove("is-hidden");
+}
+
+function clearScreenResultMark() {
+  dom.screenMark.textContent = "";
+  dom.screenMark.classList.add("is-hidden");
+}
+
+function clearOneResultMark(mark) {
+  mark.textContent = "";
+  mark.classList.add("is-hidden");
+  mark.classList.remove("ok", "ng");
 }
 
 function isBlockedPair(a, b) {

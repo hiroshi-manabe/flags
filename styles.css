@@ -124,8 +124,25 @@ h2 {
 }
 
 .play-screen {
+  position: relative;
   display: grid;
   gap: 14px;
+}
+
+.screen-result-mark {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  color: #1f8f5f;
+  font-size: clamp(10rem, 42vw, 24rem);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow:
+    0 3px 0 rgba(255, 255, 255, 0.86),
+    0 12px 36px rgba(23, 33, 38, 0.2);
 }
 
 .loading-screen {
@@ -232,6 +249,7 @@ h2 {
 }
 
 .flag-card {
+  position: relative;
   padding: 14px;
   border: 1px solid rgba(23, 33, 38, 0.14);
   border-radius: 8px;
@@ -285,6 +303,8 @@ h2 {
 }
 
 .choice {
+  position: relative;
+  overflow: hidden;
   min-height: 78px;
   display: grid;
   place-items: center;
@@ -306,6 +326,33 @@ h2 {
   border: 1px solid rgba(23, 33, 38, 0.14);
   object-fit: cover;
   background: #fff;
+}
+
+.result-mark {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  font-size: clamp(5rem, 20vw, 13rem);
+  font-weight: 900;
+  line-height: 1;
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.82),
+    0 8px 24px rgba(23, 33, 38, 0.18);
+}
+
+.choice .result-mark {
+  font-size: clamp(4.2rem, 16vw, 9rem);
+}
+
+.result-mark.ok {
+  color: #1f8f5f;
+}
+
+.result-mark.ng {
+  color: #c44535;
 }
 
 .choice:active,
