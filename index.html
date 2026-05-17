@@ -1,28 +1,87 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f4ea">
-    <title>Flag Buddy</title>
+    <meta name="theme-color" content="#f6f7f2">
+    <title>国旗クイズ</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="app" aria-labelledby="app-title">
-      <section class="quiz">
-        <p class="eyebrow">Flag practice</p>
-        <h1 id="app-title">Flag Buddy</h1>
-        <div class="flag-card" aria-label="Flag question">
-          <img class="flag" src="assets/flags/4x3/jp.svg" alt="Flag of Japan">
+    <main class="app">
+      <section class="screen mode-screen" data-screen="mode" aria-labelledby="app-title">
+        <div class="top-row">
+          <div>
+            <p class="eyebrow">国旗クイズ</p>
+            <h1 id="app-title">どっちの国旗？</h1>
+          </div>
+          <button class="icon-button" type="button" data-action="open-settings" aria-label="設定">⚙</button>
         </div>
-        <p class="prompt">Which country uses this flag?</p>
-        <div class="choices" aria-label="Answer choices">
-          <button type="button" data-correct="true">Japan</button>
-          <button type="button">Canada</button>
-          <button type="button">France</button>
-          <button type="button">Brazil</button>
+
+        <div class="mode-grid">
+          <button class="mode-card" type="button" data-mode="infinite">
+            <span class="mode-title">無限モード</span>
+            <span class="mode-copy">少しずつ覚える</span>
+          </button>
+          <button class="mode-card" type="button" data-mode="all">
+            <span class="mode-title">全国旗モード</span>
+            <span class="mode-copy">200問をランダム</span>
+          </button>
         </div>
-        <p class="feedback" aria-live="polite">Tap an answer to start.</p>
+      </section>
+
+      <section class="screen play-screen is-hidden" data-screen="play" aria-labelledby="play-title">
+        <header class="play-header">
+          <button class="back-button" type="button" data-action="back">← 戻る</button>
+          <div class="mode-label" id="play-title">無限モード</div>
+        </header>
+
+        <div class="hud" aria-live="polite">
+          <div class="hud-item">
+            <span class="hud-label">正解率</span>
+            <span class="hud-value" data-hud="accuracy">0/0 0%</span>
+          </div>
+          <div class="hud-item hud-progress" data-hud-progress>
+            <span class="hud-label">進み具合</span>
+            <span class="hud-value" data-hud="run-progress">0/200</span>
+            <span class="run-bar" aria-hidden="true"><span data-run-bar></span></span>
+          </div>
+        </div>
+
+        <div class="timer" data-timer aria-hidden="true">
+          <span data-timer-bar></span>
+        </div>
+
+        <div class="question">
+          <div class="flag-card">
+            <img class="flag" data-flag alt="">
+          </div>
+          <p class="prompt" data-prompt>どっちの国旗？</p>
+        </div>
+
+        <div class="choices" aria-label="答え">
+          <button class="choice" type="button" data-choice="left"></button>
+          <button class="choice" type="button" data-choice="right"></button>
+        </div>
+
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </section>
+
+      <section class="settings-panel is-hidden" data-settings aria-labelledby="settings-title">
+        <div class="settings-card">
+          <div class="settings-head">
+            <h2 id="settings-title">設定</h2>
+            <button class="icon-button" type="button" data-action="close-settings" aria-label="閉じる">×</button>
+          </div>
+          <fieldset>
+            <legend>制限時間</legend>
+            <div class="segmented" data-timer-options>
+              <button type="button" data-timer-value="3000">3秒</button>
+              <button type="button" data-timer-value="10000">10秒</button>
+              <button type="button" data-timer-value="0">なし</button>
+            </div>
+          </fieldset>
+        </div>
       </section>
     </main>
     <script src="app.js"></script>
