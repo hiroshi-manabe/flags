@@ -91,6 +91,8 @@ const assetRecords = Object.entries(countries)
       continentName: continentNames[country.continent] || country.continent,
       capital: country.capital || "",
       flag: `assets/flags/4x3/${code}.svg`,
+      flagSvg: `assets/flags/4x3/${code}.svg`,
+      flagPng: `assets/flags/4x3-png/${code}.png`,
     };
   })
   .filter(Boolean)
@@ -130,6 +132,13 @@ writeFileSync(
         repository: "https://github.com/lipis/flag-icons",
         assetPath: "assets/flags/4x3",
       },
+      runtimePng: {
+        width: 480,
+        height: 360,
+        assetPath: "assets/flags/4x3-png",
+        sourcePath: "assets/flags/4x3",
+        generator: "tools/generate-flag-pngs.mjs",
+      },
       japaneseNames: {
         source: "Intl.DisplayNames",
         locale: "ja",
@@ -160,14 +169,15 @@ writeFileSync(
   `# Flag Assets\n\n` +
     `The project includes ${assetRecords.length} ISO-style country and territory flag SVGs in \`assets/flags/4x3/\`.\n\n` +
     `The app-facing quiz dataset contains ${records.length} entries in \`data/countries.json\`: 193 UN member states, 2 UN observer states, and 5 common extra flags: Cook Islands, Niue, Taiwan, Kosovo, and Western Sahara.\n\n` +
-    `Metadata is generated with English names, Japanese names, native names, continents, capitals, and asset paths.\n\n` +
+    `Runtime PNGs are generated for the app-facing dataset in \`assets/flags/4x3-png/\` at 480x360.\n\n` +
+    `Metadata is generated with English names, Japanese names, native names, continents, capitals, SVG paths, and PNG paths.\n\n` +
     `Japanese country names are also generated as a compact lookup map in \`data/countries-ja.json\`.\n\n` +
     `Sources:\n\n` +
     `- \`flag-icons@${flagIconsVersion}\`, MIT license, https://github.com/lipis/flag-icons\n` +
     `- \`countries-list@${countriesListVersion}\`, MIT license, https://github.com/annexare/Countries\n\n` +
     `Japanese display names come from the runtime ICU/CLDR data exposed through \`Intl.DisplayNames\` with locale \`ja\`.\n\n` +
     `Regenerate with:\n\n` +
-    `\`\`\`sh\nnode tools/import-flag-assets.mjs\n\`\`\`\n`,
+    `\`\`\`sh\nnode tools/import-flag-assets.mjs\nnode tools/generate-flag-pngs.mjs\n\`\`\`\n`,
 );
 
 console.log(`Imported ${assetRecords.length} flag assets and ${records.length} quiz entries`);

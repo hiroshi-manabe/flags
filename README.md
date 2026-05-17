@@ -17,4 +17,5 @@ Regenerate the flag assets with:
 
 ```sh
 node tools/import-flag-assets.mjs
+node tools/generate-flag-pngs.mjs
 ```

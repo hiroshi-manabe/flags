@@ -1,11 +1,18 @@
 {
-  "generatedAt": "2026-05-16T22:43:35.023Z",
+  "generatedAt": "2026-05-17T01:10:43.035Z",
   "flagIcons": {
     "package": "flag-icons",
     "version": "7.5.0",
     "license": "MIT",
     "repository": "https://github.com/lipis/flag-icons",
     "assetPath": "assets/flags/4x3"
+  },
+  "runtimePng": {
+    "width": 480,
+    "height": 360,
+    "assetPath": "assets/flags/4x3-png",
+    "sourcePath": "assets/flags/4x3",
+    "generator": "tools/generate-flag-pngs.mjs"
   },
   "japaneseNames": {
     "source": "Intl.DisplayNames",
