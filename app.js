@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
 const TIMER_OPTIONS = [3000, 10000, 0];
 const DEFAULT_SETTINGS = { timerMs: 3000 };
 const FEEDBACK_MS = 850;
+const MIN_CORRECT_GAP = 5;
 const SEED_CODES = ["jp", "us", "gb", "fr", "de", "it", "ca", "br", "cn", "kr", "au", "in", "es", "mx", "ch", "se"];
 const BLOCKED_PAIRS = [
   ["id", "mc"],
@@ -28,6 +29,7 @@ const dom = {
   feedback: document.querySelector("[data-feedback]"),
   choices: [...document.querySelectorAll("[data-choice]")],
   timerOptions: [...document.querySelectorAll("[data-timer-value]")],
+  eraseMessage: document.querySelector("[data-erase-message]"),
 };
 
 const state = {
@@ -63,6 +65,7 @@ function bindEvents() {
   document.querySelector('[data-action="back"]').addEventListener("click", showModeScreen);
   document.querySelector('[data-action="open-settings"]').addEventListener("click", openSettings);
   document.querySelector('[data-action="close-settings"]').addEventListener("click", closeSettings);
+  document.querySelector('[data-action="erase-data"]').addEventListener("click", eraseData);
 
   dom.settingsPanel.addEventListener("click", (event) => {
     if (event.target === dom.settingsPanel) closeSettings();
@@ -127,6 +130,16 @@ function openSettings() {
 
 function closeSettings() {
   dom.settingsPanel.classList.add("is-hidden");
+  dom.eraseMessage.textContent = "";
+}
+
+function eraseData() {
+  localStorage.removeItem(STORAGE_KEYS.progress);
+  state.progress = normalizeProgress(null);
+  if (state.mode === "infinite") {
+    state.session.questionNumber = state.progress.questionNumber;
+  }
+  dom.eraseMessage.textContent = "学習データを消去しました";
 }
 
 function nextQuestion() {
@@ -232,12 +245,13 @@ function nextAllFlagsTarget() {
 function nextInfiniteTarget() {
   ensureActivePool();
   const now = state.session.questionNumber;
-  const due = state.countries
-    .map((country) => state.progress.items[country.code])
-    .filter((item) => item.status !== "new" && item.dueAt <= now)
-    .sort((a, b) => a.dueAt - b.dueAt || a.mastery - b.mastery);
+  let due = dueLearningItems(now);
+  if (due.length === 0) {
+    introduceNextNew(now);
+    due = dueLearningItems(now);
+  }
 
-  const item = due[0] || weakestActiveItem();
+  const item = due[0] || fallbackLearningItem(now) || sample(Object.values(state.progress.items));
   state.session.questionNumber += 1;
   state.progress.questionNumber = state.session.questionNumber;
   saveProgress();
@@ -249,22 +263,33 @@ function ensureActivePool() {
   const weakItems = activeItems.filter((item) => item.mastery < 55 || item.dueAt <= state.session.questionNumber);
 
   if (activeItems.length >= 10 && weakItems.length >= 3) return;
+  introduceNextNew(state.session.questionNumber);
+}
 
+function introduceNextNew(dueAt) {
   const nextNew = state.countries
     .map((country) => state.progress.items[country.code])
     .find((item) => item.status === "new");
 
-  if (!nextNew) return;
+  if (!nextNew) return null;
   nextNew.status = "learning";
   nextNew.mastery = 0;
-  nextNew.dueAt = state.session.questionNumber;
+  nextNew.dueAt = dueAt;
   saveProgress();
+  return nextNew;
 }
 
-function weakestActiveItem() {
-  return Object.values(state.progress.items)
-    .filter((item) => item.status !== "new")
-    .sort((a, b) => a.mastery - b.mastery || a.dueAt - b.dueAt)[0];
+function dueLearningItems(now) {
+  return state.countries
+    .map((country) => state.progress.items[country.code])
+    .filter((item) => item.status !== "new" && item.status !== "mastered" && item.dueAt <= now)
+    .sort((a, b) => a.dueAt - b.dueAt || a.mastery - b.mastery);
+}
+
+function fallbackLearningItem(now) {
+  const learningItems = Object.values(state.progress.items).filter((item) => item.status !== "new" && item.status !== "mastered");
+  const cooledItems = learningItems.filter((item) => item.lastSeenAt === null || now - item.lastSeenAt >= MIN_CORRECT_GAP);
+  return (cooledItems.length ? cooledItems : learningItems).sort((a, b) => a.dueAt - b.dueAt || a.mastery - b.mastery)[0];
 }
 
 function infiniteDistractor(target) {
@@ -324,7 +349,7 @@ function distractorWeight(item) {
 }
 
 function nextSpacing(item) {
-  if (item.streak <= 1) return 4 + Math.floor(Math.random() * 3);
+  if (item.streak <= 1) return MIN_CORRECT_GAP + Math.floor(Math.random() * 2);
   if (item.streak === 2) return 10 + Math.floor(Math.random() * 6);
   if (item.streak === 3) return 24;
   return 50;
@@ -387,16 +412,17 @@ function normalizeProgress(progress) {
   for (const country of state.countries) {
     const old = existing[country.code] || {};
     const seedKnown = SEED_CODES.includes(country.code);
+    const status = seedKnown ? "mastered" : old.status || "new";
     items[country.code] = {
       code: country.code,
-      status: old.status || (seedKnown ? "seed-known" : "new"),
+      status,
       seen: old.seen || 0,
       correct: old.correct || 0,
       wrong: old.wrong || 0,
       timeouts: old.timeouts || 0,
       streak: old.streak || 0,
-      mastery: old.mastery ?? (seedKnown ? 35 : 0),
-      dueAt: old.dueAt || 0,
+      mastery: seedKnown ? 100 : old.mastery ?? 0,
+      dueAt: seedKnown ? Number.MAX_SAFE_INTEGER : old.dueAt || 0,
       lastSeenAt: old.lastSeenAt || null,
       lastDistractors: old.lastDistractors || [],
     };

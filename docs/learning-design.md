@@ -100,6 +100,8 @@ The default timer setting is 3 seconds.
 
 Store settings locally, probably in `localStorage`.
 
+Include a data erase button for verification and testing. It should clear local learning progress and reset the app's stored state. Settings may remain unchanged unless there is a strong reason to reset them too.
+
 ## HUD
 
 The HUD should be compact and readable on iPad mini. It should show useful state without competing with the flag and two answer choices.
@@ -186,6 +188,8 @@ Suggested seed-known flags:
 - Mexico
 - Switzerland
 - Sweden
+
+These seed-known flags should be treated as already mastered at initialization. They should mainly serve as familiar distractors, not dominate the first targets. A rough proxy such as GDP, population, or global recognizability can help choose this famous-flag set, but the app should use an explicit curated list so the result stays predictable.
 
 Initial presentation pattern:
 
@@ -288,10 +292,12 @@ if (answerCorrect) {
 Suggested spacing by progress:
 
 - First wrong: repeat after 2-4 questions.
-- First correct: repeat after 4-6 questions.
+- First correct: repeat after at least 4-5 other questions.
 - Second spaced correct: repeat after 10-15 questions.
 - Third spaced correct: repeat in a later session.
 - Fourth or fifth spaced correct: mark mastered, then review occasionally.
+
+If no item is due in Infinite Mode, introduce another new item before repeating a just-correct item. Avoid showing the same target as the correct answer again during its cooldown unless there is no viable alternative.
 
 ## Distractor Policy
 
@@ -363,6 +369,7 @@ The first production implementation should be simple and transparent:
 - Provide Infinite Mode and All Flags Mode.
 - Provide mode selection and play screens, with a no-confirmation back button from play to mode selection.
 - Provide a mode-selection settings button for timer options: 3 seconds, 10 seconds, and no limit.
+- Provide a settings-side data erase button for testing.
 - Show a mode-aware HUD: accuracy in both modes, plus 200-flag progress in All Flags Mode.
 - Keep player progress in local storage.
 - Maintain a queue of due items by question count.
